@@ -30,48 +30,21 @@ export class Game {
 		return new Game(this.width, this.height, grid);
 	}
 
-	private bottom(x: number, y: number): Cell {
-		return this.grid[(y + 1) % this.height][x];
-	}
-
-	private bottomLeft(x: number, y: number): Cell {
-		return this.grid[(y + 1) % this.height][(x - 1 + this.width) % this.width];
-	}
-
-	private bottomRight(x: number, y: number): Cell {
-		return this.grid[(y + 1) % this.height][(x + 1) % this.width];
-	}
-
-	private left(x: number, y: number): Cell {
-		return this.grid[y][(x - 1 + this.width) % this.width];
-	}
-
 	private neighbors(x: number, y: number): Cell[] {
+		const t = (y - 1 + this.height) % this.height;
+		const r = (x + 1) % this.width;
+		const b = (y + 1) % this.height;
+		const l = (x - 1 + this.width) % this.width;
+
 		return [
-			this.bottom(x, y),
-			this.bottomLeft(x, y),
-			this.bottomRight(x, y),
-			this.left(x, y),
-			this.right(x, y),
-			this.top(x, y),
-			this.topLeft(x, y),
-			this.topRight(x, y)
+			this.grid[t][l],
+			this.grid[t][x],
+			this.grid[t][r],
+			this.grid[y][r],
+			this.grid[b][r],
+			this.grid[b][x],
+			this.grid[b][l],
+			this.grid[y][l]
 		];
-	}
-
-	private right(x: number, y: number): Cell {
-		return this.grid[y][(x + 1) % this.width];
-	}
-
-	private top(x: number, y: number): Cell {
-		return this.grid[(y - 1 + this.height) % this.height][x];
-	}
-
-	private topLeft(x: number, y: number): Cell {
-		return this.grid[(y - 1 + this.height) % this.height][(x - 1 + this.width) % this.width];
-	}
-
-	private topRight(x: number, y: number): Cell {
-		return this.grid[(y - 1 + this.height) % this.height][(x + 1) % this.width];
 	}
 }
