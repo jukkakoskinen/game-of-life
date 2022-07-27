@@ -30,7 +30,7 @@
 			{#each game.grid as row}
 				<div class="flex h-3">
 					{#each row as cell}
-						<div class="flex-1" class:bg-neutral-400={cell === 'alive'} />
+						<div class="flex-1" class:bg-green-400={cell === 'alive'} />
 					{/each}
 				</div>
 			{/each}
